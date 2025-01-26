@@ -1,14 +1,12 @@
 using UnityEngine;
 
 [System.Serializable]
-public class Item
+[CreateAssetMenu(fileName = "Item", menuName = "Items/Item", order = 100)]
+public class Item : ScriptableObject
 {
-    public string Name;
-    public string Description;
-    public Sprite Icon;
     public ItemType Type;
-    public int MaxStack;
-    public int Stack;
-    public float Defense;
-    public float Weight;
+    public Sprite Icon;
+    public string Name, Description;
+    public int MaxStack, Stack;
+    public float Defense, Weight;
 }

@@ -1,33 +1,40 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
-    [SerializeField] private Image _imageItem;   
+    [SerializeField] public Image _imageItem;   
     [SerializeField] private TMP_Text _amountText;
 
     private Item _currentItem;
 
-    private void OnEnable()
+    private void Start()
     {
-        SlotActive(_currentItem != null);
+        SlotActive(false);
     }
+
+    public Item GetItem() => _currentItem;
 
     public void SetItem(Item item)
     {
+        SlotActive(true);
         _currentItem = item;
-    }
-
-    public Item GetItem()
-    {
-        return _currentItem;
+        
+        _imageItem.sprite = _currentItem.Icon;
+        _imageItem.gameObject.SetActive(true);
+            
+        _amountText.text = _currentItem.Stack > 1 ? _currentItem.Stack.ToString() : "";
+        _amountText.gameObject.SetActive(_currentItem.Stack > 1);
     }
 
     public void ClearSlot()
     {
-        SetItem(null);
+        _currentItem = null;
+        _imageItem.sprite = null;
+        _amountText.text = "";
+        
+        SlotActive(false);
     }
 
     private void SlotActive(bool value)
