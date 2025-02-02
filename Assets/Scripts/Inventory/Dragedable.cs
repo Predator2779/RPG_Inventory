@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace Inventory
 {
-    public class DragNDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class Dragedable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         private Transform _originalParent;
         private Canvas _canvas;
@@ -38,17 +38,9 @@ namespace Inventory
             _canvasGroup.blocksRaycasts = true;
 
             SlotView inputSlot = _originalParent.GetComponent<SlotView>();
-            SlotView outputSlot = eventData.pointerEnter != null ? eventData.pointerEnter.GetComponent<SlotView>() : null;
-
-            print(outputSlot);
+            SlotView outputSlot = eventData.pointerEnter != null ? eventData.pointerEnter.GetComponentInParent<SlotView>() : null;
             
-            if (outputSlot != null) outputSlot.onItemChanged?.Invoke(inputSlot, outputSlot);
-
-            // if (newSlotView != null && newSlotView.GetItem() == null)
-            // {
-            //     newSlotView.SetItem(originalSlotView.GetItem());
-            //     originalSlotView.ClearSlot();
-            // }
+            if (outputSlot != null) outputSlot.DragFrom(inputSlot.Index);
 
             transform.SetParent(_originalParent);
             transform.localPosition = Vector3.zero;

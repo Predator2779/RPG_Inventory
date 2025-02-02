@@ -1,16 +1,23 @@
 ﻿using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Inventory
 {
-    public class InventoryView : MonoBehaviour
+    public class InventoryView
     {
-        public Action<SlotView, SlotView> onItemChanged;
+        public Action<int, int> OnDragItem;
         
-        [SerializeField] private Transform _inventoryGrid;
-        [SerializeField] private SlotView _slotViewPrefab;
-
+        private readonly SlotView _slotViewPrefab;
+        private readonly Transform _parent;
+        
         private SlotView[] _slots;
+
+        public InventoryView(Transform parent, SlotView slotViewPrefab)
+        {
+            _slotViewPrefab = slotViewPrefab;
+            _parent = parent;
+        }
 
         public void CreateSlots(int amountSlots)
         {
@@ -18,25 +25,41 @@ namespace Inventory
             
             for(int i = 0; i < amountSlots; i++)
             {
-                _slots[i] = Instantiate(_slotViewPrefab, _inventoryGrid);
-                _slots[i].onItemChanged += onItemChanged;
+                _slots[i] = Object.Instantiate(_slotViewPrefab, _parent);
+                _slots[i].Index = i;
+                _slots[i].OnDragItem += (x, y) => OnDragItem?.Invoke(x, y);
             }
         }
-
+        
         public void FillGrid(Item[] items)
         {
-            var length = items.Length;
-
-            if (length > _slots.Length) return;
-
-            for(int i = 0; i < length; i++)
+            var itemsLength = items.Length;
+            var slotsLength = _slots.Length;
+            
+            if (itemsLength > slotsLength)
             {
-                if (items[i] != null)
-                    _slots[i].SetItem(items[i]);
+                Debug.LogWarning("The length of the array of items is greater than length of the array of slots!");
+                return;
+            }
+            
+            Clear();
+            
+            for(int i = 0; i < itemsLength; i++)
+            {
+                var item = items[i];
+                var index = item.Index;
+                
+                if (index < slotsLength)
+                {
+                    _slots[index].SetItem(item);
+                    continue;
+                }
+                
+                Debug.LogWarning($"Item index out of range! Item: {item.Name}, index: {item.Index}");
             }
         }
 
-        private void ClearGrid()
+        private void Clear()
         {
             foreach (var slot in _slots)
                 slot.Clear();

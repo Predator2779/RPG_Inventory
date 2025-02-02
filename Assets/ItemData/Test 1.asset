@@ -17,6 +17,6 @@ MonoBehaviour:
   Name: Test
   Description: Test
   MaxStack: 30
-  Stack: 10
+  Stack: 30
   Defense: 0
   Weight: 1

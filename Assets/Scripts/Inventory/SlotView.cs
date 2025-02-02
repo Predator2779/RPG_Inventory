@@ -7,15 +7,16 @@ namespace Inventory
 {
     public class SlotView : MonoBehaviour
     {
-        public Action<SlotView, SlotView> onItemChanged;
+        public Action<int, int> OnDragItem;
         
+        [SerializeField] private Item _сurrentItem;
         [SerializeField] private Image _imageItem;   
         [SerializeField] private TMP_Text _amountText;
-
-        private Item _сurrentItem;
+        
+        public int Index { get; set; }
         
         private void OnEnable() => SlotActive(false);
-        public Item GetItem() => _сurrentItem;
+        public void DragFrom(int slotIndex) => OnDragItem?.Invoke(slotIndex, Index);
 
         public void SetItem(Item item)
         {

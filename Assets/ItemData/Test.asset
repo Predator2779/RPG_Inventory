@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9a132a921ad5045bb6416d7fa5d3bd, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  Type: 1
+  Type: 2
   Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   Name: Test
   Description: Test
-  MaxStack: 30
-  Stack: 5
+  MaxStack: 45
+  Stack: 1
   Defense: 0
   Weight: 1
