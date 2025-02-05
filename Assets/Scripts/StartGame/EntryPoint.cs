@@ -1,5 +1,4 @@
-﻿using PopupManagement;
-using PopupManagement.Factory;
+﻿using PopupManagement.Factory;
 using PopupManagement.Popups;
 using UnityEngine;
 
