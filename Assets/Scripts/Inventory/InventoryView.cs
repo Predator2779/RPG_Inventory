@@ -7,6 +7,7 @@ namespace Inventory
     public class InventoryView
     {
         public Action<int, int> OnDragItem;
+        public Action<Item> OnItemUse;
         
         private readonly SlotView _slotViewPrefab;
         private readonly Transform _parent;
@@ -28,6 +29,7 @@ namespace Inventory
                 _slots[i] = Object.Instantiate(_slotViewPrefab, _parent);
                 _slots[i].Index = i;
                 _slots[i].OnDragItem += (x, y) => OnDragItem?.Invoke(x, y);
+                _slots[i].OnItemUse += item => OnItemUse?.Invoke(item);
             }
         }
         

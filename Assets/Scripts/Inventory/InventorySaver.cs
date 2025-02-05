@@ -12,11 +12,11 @@ namespace Inventory
             PlayerPrefs.SetString(SaveKey, json);
         }
 
-        public InventoryData Load()
-        {
-            if (!PlayerPrefs.HasKey(SaveKey)) return new InventoryData();
-            string json = PlayerPrefs.GetString(SaveKey);
-            return JsonUtility.FromJson<InventoryData>(json);
-        }
+        // public InventoryData Load()
+        // {
+        //     // if (!PlayerPrefs.HasKey(SaveKey)) return new InventoryData();
+        //     // string json = PlayerPrefs.GetString(SaveKey);
+        //     // return JsonUtility.FromJson<InventoryData>(json);
+        // }
     }
 }

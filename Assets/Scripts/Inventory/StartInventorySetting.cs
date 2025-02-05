@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PopupManagement.Popups;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,21 +17,21 @@ namespace Inventory
         [SerializeField] private SlotView _slotPrefab;
 
         [Header("Start list items")]
-        [SerializeField] private List<Item> _list = new List<Item>();
+        [SerializeField] private List<Item> _list = new ();
         
         [SerializeField] private InventoryData _inventoryData;
         
         private InventoryController _inventoryController;
         private InventoryView _inventoryView;
 
-        public void InitializeInventory()
+        public void InitializeInventory(ItemPopup itemPopup)
         {
             _inventoryGrid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
             _inventoryGrid.constraintCount = _columnAmount;
             
             _inventoryData = new InventoryData(InitializeArray());
             _inventoryView = new InventoryView(_inventoryGrid.transform, _slotPrefab);
-            _inventoryController = new InventoryController(_inventoryView, _inventoryData, _totalAmount);
+            _inventoryController = new InventoryController(_inventoryView, _inventoryData, itemPopup, _totalAmount);
             
             _inventoryController.Initialize();
         }

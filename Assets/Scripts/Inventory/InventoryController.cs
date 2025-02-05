@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PopupManagement.Factory;
+using PopupManagement.Popups;
 using UnityEngine;
 
 namespace Inventory
@@ -8,13 +10,16 @@ namespace Inventory
     {
         private readonly InventoryView _view;
         private readonly InventoryData _data;
+        private readonly ItemPopup _itemPopup;
+        private readonly PopupFactory _factory;
         private readonly Dictionary<int, Item> _itemsDict;
         private readonly int _totalSlots;
 
-        public InventoryController(InventoryView view, InventoryData data, int totalSlots)
+        public InventoryController(InventoryView view, InventoryData data, ItemPopup itemPopup, int totalSlots)
         {
             _view = view;
             _data = data;
+            _itemPopup = itemPopup;
             _totalSlots = totalSlots;
             _itemsDict = CreateDict(_data.Items);
         }
@@ -22,18 +27,21 @@ namespace Inventory
         public void Initialize()
         {
             _view.OnDragItem += PlaceSlotInSlot;
+            _view.OnItemUse += ShowItemPopup;
             _view.CreateSlots(_totalSlots);
             DrawItems();
         }
+
+        private void ShowItemPopup(Item item) => _itemPopup.Show(item);
         
         private void PlaceSlotInSlot(int inputSlotIndex, int outputSlotIndex)
         {
-            Handle(inputSlotIndex, outputSlotIndex);
+            HandleSlots(inputSlotIndex, outputSlotIndex);
             _data.Items = GetItemsArray();
             DrawItems(_data.Items);
         }
 
-        private void Handle(int inputSlotIndex, int outputSlotIndex)
+        private void HandleSlots(int inputSlotIndex, int outputSlotIndex)
         {
             if (!Has(inputSlotIndex))
             {

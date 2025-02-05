@@ -8,8 +8,9 @@ namespace Inventory
     public class SlotView : MonoBehaviour
     {
         public Action<int, int> OnDragItem;
+        public Action<Item> OnItemUse;
         
-        [SerializeField] private Item _сurrentItem;
+        [SerializeField] private Item _currentItem;
         [SerializeField] private Image _imageItem;   
         [SerializeField] private TMP_Text _amountText;
         
@@ -17,21 +18,21 @@ namespace Inventory
         
         private void OnEnable() => SlotActive(false);
         public void DragFrom(int slotIndex) => OnDragItem?.Invoke(slotIndex, Index);
-
+        public void Use() => OnItemUse?.Invoke(_currentItem);
         public void SetItem(Item item)
         {
             SlotActive(true);
             
-            _сurrentItem = item;
+            _currentItem = item;
         
-            _imageItem.sprite = _сurrentItem.Icon;
-            _imageItem.gameObject.SetActive(_сurrentItem.Icon != null);
-            _amountText.text = _сurrentItem.Stack > 1 ? _сurrentItem.Stack.ToString() : "";
+            _imageItem.sprite = _currentItem.Icon;
+            _imageItem.gameObject.SetActive(_currentItem.Icon != null);
+            _amountText.text = _currentItem.Stack > 1 ? _currentItem.Stack.ToString() : "";
         }
 
         public void Clear()
         {
-            _сurrentItem = null;
+            _currentItem = null;
             _imageItem.sprite = null;
             _amountText.text = "";
         

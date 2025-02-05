@@ -11,7 +11,7 @@ namespace Inventory
         
         public ItemType Type;
         public Sprite Icon;
-        public string Name, Description;
+        public string Name;
         public int MaxStack, Stack;
         public float Defense, Weight;
     }
