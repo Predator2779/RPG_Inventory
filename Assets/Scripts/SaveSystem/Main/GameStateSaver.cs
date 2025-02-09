@@ -20,8 +20,7 @@ namespace SaveSystem.Main
         
         private void OnApplicationPause(bool pauseStatus) => Save();
         private void OnApplicationQuit() => Save();
-
-        [ContextMenu("Save")]
+        
         public void Save()
         {
             var saveData = new SaveData();
@@ -32,8 +31,7 @@ namespace SaveSystem.Main
             PutSaveData(saveData, _savePath);
             Debug.Log($"All services saved data.");
         }
-
-        [ContextMenu("Load")]
+        
         public void Load()
         {
             var saveData = GetSaveData(_savePath);
@@ -43,7 +41,24 @@ namespace SaveSystem.Main
 
             Debug.Log($"All services loaded data.");
         }
+        
+        public void DeleteSave()
+        {
+            try
+            {
+                if (!File.Exists(_savePath))
+                {
+                    Debug.LogWarning("Save file not found, returning new SaveData instance."); ;
+                }
 
+                File.Delete(_savePath);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error deleting save: {ex.Message}");
+            }
+        }
+        
         public void RegisterSaver(ISaveService saveService)
         {
             if (_saveServices.Contains(saveService))

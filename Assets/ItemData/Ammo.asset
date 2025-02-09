@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Ammo
   m_EditorClassIdentifier: 
   item:
-    Index: 1
+    Index: 0
     Type: 0
-    Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     Name: "\u041F\u0430\u0442\u0440\u043E\u043D\u044B 9x18\u043C\u043C"
     MaxStack: 50
     Stack: 50

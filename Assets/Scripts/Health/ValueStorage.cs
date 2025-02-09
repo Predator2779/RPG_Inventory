@@ -1,10 +1,13 @@
-﻿using Health.Bars;
+﻿using System;
+using Health.Bars;
 using UnityEngine;
 
 namespace Health
 {
     public class ValueStorage
     {
+        public Action OnHealthIsZero;
+        
         private const float MinValue = 0;
         private readonly ViewBar[] _viewBars;
         private readonly float _maxValue;
@@ -17,6 +20,7 @@ namespace Health
             {
                 _currentValue = Mathf.Clamp(value, MinValue, _maxValue == 0 ? value : _maxValue);
                 ChangeBar();
+                CheckDie();
             }
         }
 
@@ -38,6 +42,11 @@ namespace Health
         public void Decrease(float value) => CurrentValue -= value;
         private float GetPercentageRation() => CurrentValue / _maxValue * 100;
 
+        private void CheckDie()
+        {
+            if (CurrentValue <= 0) OnHealthIsZero?.Invoke();
+        }
+        
         private void ChangeBar()
         {
             if (_viewBars.Length <= 0) return;
