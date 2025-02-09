@@ -42,13 +42,15 @@ namespace PopupManagement.Popups
 
                 _currentAction = GetItemAction(item.Type);
                 _actionButton.GetComponentInChildren<TMP_Text>().text = _currentAction.ButtonText;
+                _closeButton.GetComponentInChildren<TMP_Text>().text = "Закрыть";
 
                 _actionButton.onClick.RemoveAllListeners();
                 _actionButton.onClick.AddListener(() => _currentAction.Execute(item));
                 _actionButton.onClick.AddListener(Close);
 
-                _closeButton.onClick.RemoveAllListeners();
-                _closeButton.onClick.AddListener(() => _removeAction.Execute(item));
+                _removeButton.onClick.RemoveAllListeners();
+                _removeButton.onClick.AddListener(() => _removeAction.Execute(item));
+                _removeButton.onClick.AddListener(Close);
                 
                 _closeButton.onClick.RemoveAllListeners();
                 _closeButton.onClick.AddListener(Close);
