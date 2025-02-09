@@ -13,7 +13,7 @@ namespace Equipment
         [SerializeField] private TMP_Text _defenseText;
 
         private Item _equippedItem;
-
+        
         public ItemType SlotType => _slotType;
         public Item GetEquippedItem() => _equippedItem;
 
