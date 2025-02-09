@@ -169,7 +169,7 @@ namespace Inventory.Main
         }
 
         private bool Has(int index) => _itemsDict.ContainsKey(index);
-        private void DrawItems() => DrawItems(_data.Items.ToArray());
+        private void DrawItems() => DrawItems(_data.Items);
         private void DrawItems(Item[] items) => _view.FillGrid(items);
         private void ChangeData() => ChangeData(GetItemsFromDict());
         private void ChangeData(Item[] items) => _data.OnDataChanged?.Invoke(items);
