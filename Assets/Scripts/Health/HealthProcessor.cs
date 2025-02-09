@@ -1,4 +1,4 @@
-﻿namespace Inventory.Actions
+﻿namespace Health
 {
     public class HealthProcessor
     {
