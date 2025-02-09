@@ -1,6 +1,5 @@
 ﻿using Equipment;
-using Inventory;
-using Inventory.Items;
+using Health;
 using Inventory.Services;
 using PopupManagement.Factory;
 using PopupManagement.Popups;
@@ -15,8 +14,7 @@ namespace StartGame
         [SerializeField] private SaveSetting _saveSetting;
         [SerializeField] private FactorySetting _factorySetting;
         [SerializeField] private EquipmentSetting _equipmentSetting;
-
-        [SerializeField] private Item[] _items; 
+        [SerializeField] private HealthProcessor _heroHealthProcessor;
         
         private void Awake()
         {
@@ -26,11 +24,10 @@ namespace StartGame
             var inventoryService = new InventoryService();
             
             _startInventorySetting.InitializeInventory(itemPopup);
-            _startInventorySetting.InventoryData.OnDataChanged += items => _items = items;
             
             var equipmentController = _equipmentSetting.Initialize(inventoryService);
             inventoryService.SetControllers(_startInventorySetting.InventoryController, equipmentController);
-            itemPopup.Initialize(inventoryService);
+            itemPopup.Initialize(inventoryService, _heroHealthProcessor);
 
             _saveSetting.Initialize(inventoryService, _equipmentSetting.EquipSlots.ToArray());
             _startInventorySetting.AddAdditionalItems();

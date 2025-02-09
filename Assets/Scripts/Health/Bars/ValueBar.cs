@@ -1,13 +1,15 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using TMPro;
+using UnityEngine;
 
 namespace Health.Bars
 {
-    public class ValueBar : MonoBehaviour
+    public class ValueBar : ViewBar
     {
-        [SerializeField] protected Slider _slider;
-        [SerializeField] protected Image _fill;
-      
-        public virtual void SetCurrentValue(float value) => _slider.value = value;
+        [SerializeField] private TMP_Text _countText;
+        
+        public override void SetCurrentValue(float value)
+        {
+            _countText.text = value.ToString();
+        }
     }
 }

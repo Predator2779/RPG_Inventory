@@ -16,14 +16,15 @@ namespace PopupManagement.Popups
         [SerializeField] private TMP_Text _itemName, _itemDefense, _itemWeight;
         [SerializeField] private Button _actionButton, _removeButton, _closeButton;
             
-        private HealthProcessor _healthBar; // /// /////////////////////////////////
+        private HealthProcessor _healthProcessor;
         private IItemAction _currentAction;
         private IInventoryService _inventoryService;
         private RemoveAction _removeAction;
         
-        public void Initialize(IInventoryService inventoryService)
+        public void Initialize(IInventoryService inventoryService, HealthProcessor healthProcessor)
         {
             _inventoryService = inventoryService;
+            _healthProcessor = healthProcessor;
             _removeAction = new RemoveAction(_inventoryService);
         }
 
@@ -68,7 +69,7 @@ namespace PopupManagement.Popups
             switch (type)
             {
                 case ItemType.Ammo: return new AmmoAction(_inventoryService);
-                case ItemType.Consumable: return new MedKitAction(_inventoryService, _healthBar);
+                case ItemType.Consumable: return new MedKitAction(_inventoryService, _healthProcessor);
                 case ItemType.Head:
                 case ItemType.Body: return new EquipAction(_inventoryService);
                 default: throw new ArgumentOutOfRangeException(nameof(type), type, null);

@@ -6,7 +6,7 @@ namespace Health
     public class ValueStorage
     {
         private const float MinValue = 0;
-        private readonly ValueBar _valueBar;
+        private readonly ViewBar[] _viewBars;
         private readonly float _maxValue;
         private float _currentValue;
 
@@ -20,27 +20,30 @@ namespace Health
             }
         }
 
-        public ValueStorage(float currentValue, ValueBar valueBar)
+        public ValueStorage(float currentValue, ViewBar[] viewBars)
         {
+            _viewBars = viewBars;
             _maxValue = 0;
             CurrentValue = currentValue;
-            _valueBar = valueBar;
         }
 
-        public ValueStorage(float currentValue, float maxValue, ValueBar valueBar)
+        public ValueStorage(float currentValue, float maxValue, ViewBar[] viewBars)
         {
+            _viewBars = viewBars;
             _maxValue = maxValue;
             CurrentValue = currentValue;
-            _valueBar = valueBar;
         }
 
         public void Increase(float value) => CurrentValue += value;
         public void Decrease(float value) => CurrentValue -= value;
-        private float GetPercentageRation() => CurrentValue / _maxValue;
+        private float GetPercentageRation() => CurrentValue / _maxValue * 100;
 
         private void ChangeBar()
         {
-            if (_valueBar != null) _valueBar.SetCurrentValue(GetPercentageRation());
+            if (_viewBars.Length <= 0) return;
+
+            foreach (var viewBar in _viewBars)
+                viewBar.SetCurrentValue(GetPercentageRation());
         }
     }
 }

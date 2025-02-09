@@ -2,7 +2,7 @@
 
 namespace Health.Bars
 {
-    public class GradientValueBar : ValueBar
+    public class GradientSliderBar : SliderBar
     {
         [SerializeField] private Gradient _gradient;
 

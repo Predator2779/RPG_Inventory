@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Inventory;
 using Inventory.Items;
 using Inventory.Main;
 using Inventory.Slots;
 using PopupManagement.Popups;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace StartGame
