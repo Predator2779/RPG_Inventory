@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25936589e35d4c1986eadb448f01db9d, type: 3}
-  m_Name: Jacket
+  m_Name: Gun_Ammo
   m_EditorClassIdentifier: 
-  item:
-    Index: 0
-    Type: 3
-    Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    Name: "\u041A\u0443\u0440\u0442\u043A\u0430"
-    MaxStack: 1
-    Stack: 1
-    Defense: 3
-    Weight: 1
+  data:
+    Index: 12
+    Type: 0
+    Icon: {fileID: 0}
+    Name: "9\u044518\u043C\u043C"
+    MaxStack: 50
+    Stack: 50
+    Defense: 0
+    Weight: 0.01

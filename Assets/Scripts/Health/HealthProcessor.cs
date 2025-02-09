@@ -16,7 +16,7 @@ namespace Health
         private void Awake()
         {
             _health = new ValueStorage(_maxHitPoints, _maxHitPoints, _viewBars);
-            _health.OnHealthIsZero += OnHealthIsZero;
+            _health.OnHealthIsZero += () => OnHealthIsZero?.Invoke();
         }
         
         public void TakeHeal(float value) => _health.Increase(value);

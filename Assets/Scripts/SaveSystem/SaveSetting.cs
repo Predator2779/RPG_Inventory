@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Equipment;
-using Inventory;
 using Inventory.Services;
 using SaveSystem.Main;
 using SaveSystem.Services;

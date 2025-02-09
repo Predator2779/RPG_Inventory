@@ -26,8 +26,9 @@ namespace StartGame
             _startInventorySetting.InitializeInventory(itemPopup);
 
             var equipmentController = _equipmentSetting.Initialize(inventoryService);
+            var equipSlots = _equipmentSetting.EquipSlots;
             inventoryService.SetControllers(_startInventorySetting.InventoryController, equipmentController);
-            var gameStateController = _gameStateSetting.Initialize(inventoryService, endPopup);
+            var gameStateController = _gameStateSetting.Initialize(inventoryService, endPopup, equipSlots.ToArray());
             var (heroHealth, enemyHealth) = _gameStateSetting.GetHealths();
             itemPopup.Initialize(inventoryService, heroHealth);
 

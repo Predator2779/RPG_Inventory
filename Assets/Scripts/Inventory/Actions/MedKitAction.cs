@@ -7,6 +7,8 @@ namespace Inventory.Actions
 {
     public class MedKitAction : IItemAction
     {
+        private const float HealPoints = 50;
+        
         private readonly IInventoryService _inventoryService;
         private readonly HealthProcessor _health;
 
@@ -18,13 +20,14 @@ namespace Inventory.Actions
             _health = health;
         }
 
-        public void Execute(Item item)
+        public void Execute(ItemData itemData)
         {
-            if (item.Stack > 0)
+            if (itemData.Stack > 0)
             {
-                _health.TakeHeal(50);
-                item.Stack--;
-                Debug.Log($"MedKit used. Left: {item.Stack}");
+                itemData.Stack--;
+                _health.TakeHeal(HealPoints);
+                _inventoryService.DrawItems();
+                Debug.Log($"MedKit used. Left: {itemData.Stack}");
             }
             else
             {

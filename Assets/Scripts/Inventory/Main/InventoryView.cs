@@ -9,7 +9,7 @@ namespace Inventory.Main
     public class InventoryView
     {
         public Action<int, int> OnDragItem;
-        public Action<Item> OnItemUse;
+        public Action<ItemData> OnItemUse;
         
         private readonly SlotView _slotViewPrefab;
         private readonly Transform _parent;
@@ -35,7 +35,7 @@ namespace Inventory.Main
             }
         }
         
-        public void FillGrid(Item[] items)
+        public void FillGrid(ItemData[] items)
         {
             var itemsLength = items.Length;
             var slotsLength = _slots.Length;

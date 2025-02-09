@@ -2,6 +2,7 @@
 using Inventory.Items;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Inventory.Slots
@@ -10,9 +11,9 @@ namespace Inventory.Slots
     public class SlotView : MonoBehaviour
     {
         public Action<int, int> OnDragItem;
-        public Action<Item> OnItemUse;
+        public Action<ItemData> OnItemUse;
         
-        [SerializeField] private Item _currentItem;
+        [FormerlySerializedAs("_currentItemDat")] [FormerlySerializedAs("_currentItem")] [SerializeField] private ItemData _currentItemData;
         [SerializeField] private Image _imageItem;   
         [SerializeField] private TMP_Text _amountText;
 
@@ -30,18 +31,18 @@ namespace Inventory.Slots
         
         public void DragFrom(int slotIndex) => OnDragItem?.Invoke(slotIndex, Index);
 
-        public void SetItem(Item item)
+        public void SetItem(ItemData itemData)
         {
             SlotActive(true);
-            _currentItem = item;
-            _imageItem.sprite = _currentItem.Icon;
-            _imageItem.gameObject.SetActive(_currentItem.Icon != null);
-            _amountText.text = _currentItem.Stack > 1 ? _currentItem.Stack.ToString() : "";
+            _currentItemData = itemData;
+            _imageItem.sprite = _currentItemData.Icon;
+            _imageItem.gameObject.SetActive(_currentItemData.Icon != null);
+            _amountText.text = _currentItemData.Stack > 1 ? _currentItemData.Stack.ToString() : "";
         }
 
         public void Clear()
         {
-            _currentItem = null;
+            _currentItemData = null;
             _imageItem.sprite = null;
             _amountText.text = "";
             SlotActive(false);
@@ -61,6 +62,6 @@ namespace Inventory.Slots
             _button.onClick.AddListener(Use);
         }
 
-        private void Use() => OnItemUse?.Invoke(_currentItem);
+        private void Use() => OnItemUse?.Invoke(_currentItemData);
     }
 }

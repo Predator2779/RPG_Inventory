@@ -21,7 +21,7 @@ namespace StartGame
 
         [Header("Start list items")] 
         [SerializeField] private bool _add;
-        [SerializeField] private List<ItemData> _additionalItemDatas = new ();
+        [SerializeField] private List<Item> _additionalItemDatas = new ();
         
         public InventoryController InventoryController { get; private set; }
         public InventoryData InventoryData { get; private set; }
@@ -43,7 +43,7 @@ namespace StartGame
             if (!_add) return;
 
             foreach (var data in _additionalItemDatas)
-                InventoryController.AddItem(data.item);
+                InventoryController.AddItem(data.data);
         }
     }
 }

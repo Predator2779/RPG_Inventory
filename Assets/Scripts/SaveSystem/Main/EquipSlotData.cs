@@ -1,5 +1,6 @@
 ﻿using System;
 using Inventory.Items;
+using UnityEngine.Serialization;
 
 namespace SaveSystem.Main
 {
@@ -7,12 +8,12 @@ namespace SaveSystem.Main
     public class EquipSlotData
     {
         public string identrifier;
-        public Item item;
+        public ItemData itemData;
 
-        public EquipSlotData(string identrifier, Item item)
+        public EquipSlotData(string identrifier, ItemData itemData)
         {
             this.identrifier = identrifier;
-            this.item = item;
+            this.itemData = itemData;
         }
     }
 }

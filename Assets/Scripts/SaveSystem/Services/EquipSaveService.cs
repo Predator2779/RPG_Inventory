@@ -50,10 +50,10 @@ namespace SaveSystem.Services
             {
                 var slotData = saveData.equipedItems.FirstOrDefault(x => x.identrifier == slot.name);
 
-                if (slotData != null && slotData.item != null)
+                if (slotData != null && slotData.itemData != null)
                 {
-                    slot.Equip(slotData.item);
-                    Debug.Log($"{slotData.item.Name} equip to {slot.name}");
+                    slot.Equip(slotData.itemData);
+                    Debug.Log($"{slotData.itemData.Name} equip to {slot.name}");
                 }
                 else
                 {

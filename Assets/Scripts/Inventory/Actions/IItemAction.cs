@@ -6,6 +6,6 @@ namespace Inventory.Actions
     {
         public string ButtonText { get; }
         
-        public void Execute(Item item);  
+        public void Execute(ItemData itemData);  
     }
 }

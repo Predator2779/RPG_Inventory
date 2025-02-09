@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25936589e35d4c1986eadb448f01db9d, type: 3}
   m_Name: MedKit
   m_EditorClassIdentifier: 
-  item:
-    Index: 3
+  data:
+    Index: 0
     Type: 1
-    Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    Icon: {fileID: 0}
     Name: "\u0410\u043F\u0442\u0435\u0447\u043A\u0430"
     MaxStack: 6
     Stack: 6

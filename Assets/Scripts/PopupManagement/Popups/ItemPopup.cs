@@ -1,5 +1,4 @@
 ﻿using System;
-using Inventory;
 using Inventory.Actions;
 using Inventory.Items;
 using TMPro;
@@ -30,13 +29,13 @@ namespace PopupManagement.Popups
 
         public override void Show(object data)
         {
-            if (data is not Item) return;
+            if (data is not ItemData) return;
             base.Show(data);
         }
 
         protected override void Setup(object data)
         {
-            if (data is Item item)
+            if (data is ItemData item)
             {
                 _itemIcon.sprite = item.Icon;
                 _itemName.text = item.Name;

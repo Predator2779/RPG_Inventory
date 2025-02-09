@@ -1,6 +1,7 @@
 ﻿using Equipment;
 using Inventory.Items;
 using Inventory.Main;
+using UnityEngine;
 
 namespace Inventory.Services
 {
@@ -15,9 +16,9 @@ namespace Inventory.Services
             _equipmentController = equipmentController;
         }
 
-        public void AddItem(Item item)
+        public void AddItem(ItemData itemData)
         {
-            _inventoryController?.AddItem(item);
+            _inventoryController?.AddItem(itemData);
         }
 
         public void RemoveItem(int index)
@@ -29,17 +30,33 @@ namespace Inventory.Services
             _inventoryController?.FillStack(index);
         }
 
-        public void EquipItem(Item item)
+        public bool TryGetItem(string name, int amount, out ItemData item)
         {
-            _equipmentController?.Equip(item);
+            return _inventoryController.TryGetItem(name, amount, out item);
+        }
+        
+        public bool HasItem(string name, int amount)
+        {
+           return _inventoryController.HasItem(name, amount);
+        }
+        
+        public void EquipItem(ItemData itemData)
+        {
+            _equipmentController?.Equip(itemData);
         }
 
-        public void LoadData(Item[] items)
+        public void LoadData(ItemData[] items)
         {
             _inventoryController?.LoadData(items);
         }
 
-        public Item[] GetInventoryData()
+        public void DrawItems()
+        {
+            Debug.Log("Drawed");
+            _inventoryController?.DrawItems();
+        }
+        
+        public ItemData[] GetInventoryData()
         {
             return _inventoryController.GetInventoryData();
         }

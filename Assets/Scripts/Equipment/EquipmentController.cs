@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Inventory;
 using Inventory.Items;
 using Inventory.Services;
 using UnityEngine;
@@ -17,23 +16,23 @@ namespace Equipment
             _inventoryService = inventoryService;
         }
 
-        public void Equip(Item item)
+        public void Equip(ItemData itemData)
         {
-            var slot = _equipSlots.Find(s => s.SlotType == item.Type);
+            var slot = _equipSlots.Find(s => s.SlotType == itemData.Type);
             if (slot == null)
             {
-                Debug.LogError($"Not found slot for {item.Type}!");
+                Debug.LogError($"Not found slot for {itemData.Type}!");
                 return;
             }
 
-            Item previousItem = slot.Unequip();
-            slot.Equip(item);
-            _inventoryService.RemoveItem(item.Index);
+            ItemData previousItemData = slot.Unequip();
+            slot.Equip(itemData);
+            _inventoryService.RemoveItem(itemData.Index);
 
-            if (previousItem != null)
+            if (previousItemData != null)
             {
-                Debug.Log($"Item {previousItem.Name} has been replaced by item {item.Name}");
-                _inventoryService.AddItem(previousItem);
+                Debug.Log($"Item {previousItemData.Name} has been replaced by item {itemData.Name}");
+                _inventoryService.AddItem(previousItemData);
             }
         }
     }

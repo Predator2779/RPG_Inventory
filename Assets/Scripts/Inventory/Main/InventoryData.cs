@@ -7,13 +7,13 @@ namespace Inventory.Main
     [Serializable]
     public class InventoryData
     {
-        public Action<Item[]> OnDataChanged;
+        public Action<ItemData[]> OnDataChanged;
         
-        [field: SerializeField] public Item[] Items { get; set; }
+        [field: SerializeField] public ItemData[] Items { get; set; }
 
         public InventoryData()
         {
-            Items = Array.Empty<Item>();
+            Items = Array.Empty<ItemData>();
             OnDataChanged += items =>
             {
                 Items = items;

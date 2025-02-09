@@ -1,6 +1,5 @@
 ﻿using Inventory.Items;
 using Inventory.Services;
-using UnityEngine;
 
 namespace Inventory.Actions
 {
@@ -15,9 +14,9 @@ namespace Inventory.Actions
             _inventoryService = inventoryService;
         }
 
-        public void Execute(Item item)
+        public void Execute(ItemData itemData)
         {
-            _inventoryService.EquipItem(item);
+            _inventoryService.EquipItem(itemData);
         }
     }
 }

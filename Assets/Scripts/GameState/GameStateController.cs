@@ -10,7 +10,7 @@ namespace GameState
     {
         private readonly EndPopup _endPopup;
         private readonly HealthProcessor _heroHealth, _enemyHealth;
-        private readonly ItemData[] _loot;
+        private readonly Item[] _loot;
         private readonly InventoryService _inventoryService;
 
         public GameStateController(
@@ -18,7 +18,7 @@ namespace GameState
             EndPopup endPopup, 
             HealthProcessor heroHealth, 
             HealthProcessor enemyHealth,
-            ItemData[] loot)
+            Item[] loot)
         {
             _inventoryService = inventoryService;
             _endPopup = endPopup;
@@ -33,17 +33,17 @@ namespace GameState
         private void Win()
         {
             var rand = Random.Range(0, _loot.Length);
-            var item = _loot[rand].item;
+            var item = _loot[rand].data;
         
             _inventoryService.AddItem(item);
-            _endPopup.Show($"Congratulate! You win! {item.Name} added to your inventory");
+            _endPopup.Show($"Поздравляю! Ты победил! {item.Name} {item.Stack}шт. добавлено в твой инвентарь");
             _enemyHealth.TakeHeal(100);
             Debug.Log("Enemy regenerated");
         }
 
         private void Lose()
         {
-            _endPopup.Show("I'm sorry, but you lost. Better luck next time.");
+            _endPopup.Show("Извини, но ты проиграл. У тебя все получится, удачи!");
             _heroHealth.TakeHeal(100);
             Debug.Log("Health restored");
             _enemyHealth.TakeHeal(100);

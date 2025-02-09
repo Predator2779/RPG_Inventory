@@ -3,7 +3,6 @@ using System.Linq;
 using Inventory.Items;
 using PopupManagement.Factory;
 using PopupManagement.Popups;
-using UnityEditor;
 using UnityEngine;
 
 namespace Inventory.Main
@@ -16,7 +15,7 @@ namespace Inventory.Main
         private readonly PopupFactory _factory;
         private readonly int _totalSlots;
         
-        private Dictionary<int, Item> _itemsDict;
+        private Dictionary<int, ItemData> _itemsDict;
 
         public InventoryController(InventoryView view, InventoryData data, ItemPopup itemPopup, int totalSlots)
         {
@@ -35,30 +34,30 @@ namespace Inventory.Main
             DrawItems();
         }
 
-        public void LoadData(Item[] items)
+        public void LoadData(ItemData[] items)
         {
             ChangeDict(items);
             ChangeData();
             DrawItems();
         }
 
-        public void AddItem(Item item)
+        public void AddItem(ItemData itemData)
         {
             foreach (var slotItem in _itemsDict)
             {
-                if (slotItem.Value.Name == item.Name 
-                    && slotItem.Value.Type == item.Type 
+                if (slotItem.Value.Name == itemData.Name 
+                    && slotItem.Value.Type == itemData.Type 
                     && slotItem.Value.Stack < slotItem.Value.MaxStack)
                 {
                     int availableSpace = slotItem.Value.MaxStack - slotItem.Value.Stack;
-                    int amountToAdd = Mathf.Min(item.Stack, availableSpace);
+                    int amountToAdd = Mathf.Min(itemData.Stack, availableSpace);
 
                     slotItem.Value.Stack += amountToAdd;
-                    item.Stack -= amountToAdd;
+                    itemData.Stack -= amountToAdd;
 
                     Debug.Log($"Added {amountToAdd} к {slotItem.Value.Name}, now in stack: {slotItem.Value.Stack}");
 
-                    if (item.Stack <= 0)
+                    if (itemData.Stack <= 0)
                     {
                         DrawItems();
                         return;
@@ -73,13 +72,13 @@ namespace Inventory.Main
                 return;
             }
 
-            item.Index = emptySlotIndex;
-            _itemsDict[emptySlotIndex] = item;
+            itemData.Index = emptySlotIndex;
+            _itemsDict[emptySlotIndex] = itemData;
 
             ChangeData();
             DrawItems();
             
-            Debug.Log($"Item {item.Name} added to new slot");
+            Debug.Log($"Item {itemData.Name} added to new slot");
         }
         
         public void RemoveItem(int index)
@@ -112,8 +111,30 @@ namespace Inventory.Main
             ChangeData();
             DrawItems();
         }
+
+        public bool TryGetItem(string name, int amount, out ItemData item)
+        {
+            item = null;
+            var arr = GetItemsFromDict();
+            foreach (var data in arr)
+            {
+                if (data.Name == name && data.Stack >= amount)
+                {
+                    item = data;
+                    return true;
+                }
+            }
+
+            return false;
+        }
         
-        private void ShowItemPopup(Item item) => _itemPopup.Show(item);
+        public bool HasItem(string name, int amount)
+        {
+            var arr = GetItemsFromDict();
+            return arr.Any(item => item.Name == name && item.Stack >= amount);
+        }
+        
+        private void ShowItemPopup(ItemData itemData) => _itemPopup.Show(itemData);
         
         private void PlaceSlotInSlot(int inputSlotIndex, int outputSlotIndex)
         {
@@ -165,10 +186,10 @@ namespace Inventory.Main
             Debug.Log($"The item {inputSlotIndex} has been added to {outputSlotIndex} without remainder");
         }
 
-        private Dictionary<int, Item> CreateDict(Item[] items)
+        private Dictionary<int, ItemData> CreateDict(ItemData[] items)
         {
             var arr = items;
-            var dict = new Dictionary<int, Item>();
+            var dict = new Dictionary<int, ItemData>();
 
             if (arr.Length > 0)
                 foreach (var item in arr)
@@ -177,20 +198,20 @@ namespace Inventory.Main
             return dict;
         }
 
+        public void DrawItems() => DrawItems(_data.Items);
+        private void DrawItems(ItemData[] items) => _view.FillGrid(items);
         private bool Has(int index) => _itemsDict.ContainsKey(index);
-        private void DrawItems() => DrawItems(_data.Items);
-        private void DrawItems(Item[] items) => _view.FillGrid(items);
         private void ChangeData() => ChangeData(GetItemsFromDict());
-        private void ChangeData(Item[] items) => _data.OnDataChanged?.Invoke(items);
-        private void ChangeDict(Item[] items) => _itemsDict = CreateDict(items);
-        private Item[] GetItemsFromDict() => _itemsDict.Values.ToArray();
-        public Item[] GetInventoryData() => _data.Items.ToArray();
+        private void ChangeData(ItemData[] items) => _data.OnDataChanged?.Invoke(items);
+        private void ChangeDict(ItemData[] items) => _itemsDict = CreateDict(items);
+        private ItemData[] GetItemsFromDict() => _itemsDict.Values.ToArray();
+        public ItemData[] GetInventoryData() => _data.Items.ToArray();
         private void Remove(int index) => _itemsDict.Remove(index);
 
-        private void Add(int index, Item item)
+        private void Add(int index, ItemData itemData)
         {
-            item.Index = index;
-            _itemsDict.Add(index, item);
+            itemData.Index = index;
+            _itemsDict.Add(index, itemData);
         }
 
         private void Swap(int firstIndex, int secondIndex)

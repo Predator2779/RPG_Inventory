@@ -1,5 +1,6 @@
 ﻿using System;
 using BattleSystem;
+using Equipment;
 using Health;
 using Inventory.Items;
 using Inventory.Services;
@@ -19,12 +20,12 @@ namespace GameState
         [SerializeField] public HealthProcessor _enemyHealth;
         
         [Header("Loot")]
-        [SerializeField] private ItemData[] _loot;
+        [SerializeField] private Item[] _loot;
 
-        public GameStateController Initialize(InventoryService inventoryService, EndPopup endPopup)
+        public GameStateController Initialize(InventoryService inventoryService, EndPopup endPopup, EquipSlot[] equipSlots)
         {
             var gameStateController = new GameStateController(inventoryService, endPopup, _heroHealth, _enemyHealth, _loot);
-            _weaponManager.Initialize(_heroHealth, _enemyHealth);
+            _weaponManager.Initialize(inventoryService, _heroHealth, _enemyHealth, equipSlots);
             return gameStateController;
         }
 
