@@ -24,6 +24,10 @@ namespace Inventory.Services
         {
             _inventoryController?.RemoveItem(item);
         }
+        public void BuyItem(int index)
+        {
+            _inventoryController?.FillStack(index);
+        }
 
         public void EquipItem(Item item)
         {

@@ -17,7 +17,7 @@ namespace Inventory.Actions
 
         public void Execute(Item item)
         {
-            _inventoryService.AddItem(item);
+            _inventoryService.BuyItem(item.Index);
         }
     }
 }

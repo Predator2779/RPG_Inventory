@@ -3,6 +3,7 @@ using System.Linq;
 using Inventory.Items;
 using PopupManagement.Factory;
 using PopupManagement.Popups;
+using UnityEditor;
 using UnityEngine;
 
 namespace Inventory.Main
@@ -45,7 +46,9 @@ namespace Inventory.Main
         {
             foreach (var slotItem in _itemsDict)
             {
-                if (slotItem.Value.Name == item.Name && slotItem.Value.Stack < slotItem.Value.MaxStack)
+                if (slotItem.Value.Name == item.Name 
+                    && slotItem.Value.Type == item.Type 
+                    && slotItem.Value.Stack < slotItem.Value.MaxStack)
                 {
                     int availableSpace = slotItem.Value.MaxStack - slotItem.Value.Stack;
                     int amountToAdd = Mathf.Min(item.Stack, availableSpace);
@@ -89,15 +92,23 @@ namespace Inventory.Main
                 return;
             }
 
-            if (item.Stack > 1)
+            _itemsDict.Remove(slotIndex);
+            Debug.Log($"Removed {item.Name} from inventory.");
+
+            ChangeData();
+            DrawItems();
+        }
+
+        public void FillStack(int slotIndex)
+        {
+            if (_itemsDict.TryGetValue(slotIndex, out var item))
             {
-                item.Stack--;
-                Debug.Log($"Removed one {item.Name}, remaining: {item.Stack}");
+                item.Stack = item.MaxStack;
+                Debug.Log($"{item.Name} filled.");
             }
             else
             {
-                _itemsDict.Remove(slotIndex);
-                Debug.Log($"Removed {item.Name} from inventory.");
+                Debug.LogWarning($"Item {item.Name} not found in inventory!");
             }
 
             ChangeData();

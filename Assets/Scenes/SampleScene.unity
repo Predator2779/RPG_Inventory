@@ -1793,7 +1793,7 @@ MonoBehaviour:
     _totalAmount: 30
     _inventoryGrid: {fileID: 1934764671}
     _slotPrefab: {fileID: 5121411212030688575, guid: 0f64468e40badce46a6f7472dce79c9c, type: 3}
-    _add: 0
+    _add: 1
     _additionalItemDatas:
     - {fileID: 11400000, guid: a189c53646393944180cbf44fac84f87, type: 2}
     - {fileID: 11400000, guid: db360a28cdd58a74280a981632e67555, type: 2}

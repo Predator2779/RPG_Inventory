@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Ammo
   m_EditorClassIdentifier: 
   item:
-    Index: 0
-    Type: 1
+    Index: 4
+    Type: 0
     Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
     Name: Pistol_Ammo
     MaxStack: 30
