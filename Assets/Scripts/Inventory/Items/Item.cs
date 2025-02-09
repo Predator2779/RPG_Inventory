@@ -1,18 +1,26 @@
 using System;
 using UnityEngine;
 
-namespace Inventory
+namespace Inventory.Items
 {
     [Serializable]
-    [CreateAssetMenu(fileName = "Item", menuName = "Items/Item", order = 100)]
-    public class Item : ScriptableObject
+    public class Item
     {
-        [NonSerialized] public int Index;
+        [HideInInspector] public int Index;
         
         public ItemType Type;
         public Sprite Icon;
         public string Name;
         public int MaxStack, Stack;
         public float Defense, Weight;
+
+        public void PrintInfo()
+        {
+            Debug.Log(
+                $"Index: {Index}; Type: {Type}; Name: {Name}\n" +
+                $"Stack: {Stack}; MaxStack: {MaxStack}\n;" +
+                $"Defense: {Defense}; Weight: {Weight}\n;"
+            );
+        }
     }
 }

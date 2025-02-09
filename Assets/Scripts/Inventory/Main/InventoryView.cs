@@ -1,8 +1,9 @@
 ﻿using System;
+using Inventory.Items;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Inventory
+namespace Inventory.Main
 {
     public class InventoryView
     {

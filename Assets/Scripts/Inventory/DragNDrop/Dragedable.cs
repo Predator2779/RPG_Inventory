@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Inventory
+namespace Inventory.DragNDrop
 {
     public class Dragedable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
