@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Bulletproof_Vest
   m_EditorClassIdentifier: 
   data:
-    Index: 0
+    Index: 12
     Type: 3
-    Icon: {fileID: 0}
+    Icon: {fileID: -2757887451555568444, guid: 1740f6e44223d534a9c9931850dc2eb4, type: 3}
     Name: "\u0411\u0440\u043E\u043D\u0435\u0436\u0438\u043B\u0435\u0442"
     MaxStack: 1
     Stack: 1

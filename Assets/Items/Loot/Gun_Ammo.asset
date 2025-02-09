@@ -15,7 +15,7 @@ MonoBehaviour:
   data:
     Index: 12
     Type: 0
-    Icon: {fileID: 0}
+    Icon: {fileID: 1485332416811865679, guid: c5994c89497f7a144ad136f874ee4ed5, type: 3}
     Name: "9\u044518\u043C\u043C"
     MaxStack: 50
     Stack: 50

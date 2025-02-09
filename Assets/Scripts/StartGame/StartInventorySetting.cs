@@ -44,6 +44,8 @@ namespace StartGame
 
             foreach (var data in _additionalItemDatas)
                 InventoryController.AddItem(data.data);
+
+            _add = false;
         }
     }
 }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Helmet
   m_EditorClassIdentifier: 
   data:
-    Index: 0
+    Index: 10
     Type: 2
-    Icon: {fileID: 0}
+    Icon: {fileID: 309628545801974608, guid: 24536e7528508d1448989ccd3f3dac99, type: 3}
     Name: "\u0428\u043B\u0435\u043C"
     MaxStack: 1
     Stack: 1
