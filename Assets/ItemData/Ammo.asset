@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f9a132a921ad5045bb6416d7fa5d3bd, type: 3}
-  m_Name: Test 1
+  m_Script: {fileID: 11500000, guid: 25936589e35d4c1986eadb448f01db9d, type: 3}
+  m_Name: Ammo
   m_EditorClassIdentifier: 
-  Type: 1
-  Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  Name: Test
-  Description: Test
-  MaxStack: 30
-  Stack: 30
-  Defense: 0
-  Weight: 1
+  item:
+    Index: 0
+    Type: 1
+    Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    Name: Pistol_Ammo
+    MaxStack: 30
+    Stack: 8
+    Defense: 0
+    Weight: 2

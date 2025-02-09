@@ -1,9 +1,17 @@
-﻿using UnityEngine;
+﻿using Equipment;
+using UnityEngine;
 
 namespace PopupManagement.Popups
 {
     public abstract class BasePopup : MonoBehaviour
     {
+        protected EquipmentController _equipmentController;
+
+        public void Initialize(EquipmentController equipmentController)
+        {
+            _equipmentController = equipmentController;
+        }
+        
         public virtual void Show(object data)
         {
             gameObject.SetActive(true);

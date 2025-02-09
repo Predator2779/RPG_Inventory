@@ -1,10 +1,12 @@
 ﻿using System;
+using Inventory.Items;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Inventory
 {
+    [RequireComponent(typeof(Button))]
     public class SlotView : MonoBehaviour
     {
         public Action<int, int> OnDragItem;
@@ -13,18 +15,25 @@ namespace Inventory
         [SerializeField] private Item _currentItem;
         [SerializeField] private Image _imageItem;   
         [SerializeField] private TMP_Text _amountText;
+
+        private Button _button;
         
         public int Index { get; set; }
+
+        private void OnValidate() => _button ??= GetComponent<Button>();
+
+        private void Awake()
+        {
+            _button ??= GetComponent<Button>();
+            SlotActive(false);
+        }
         
-        private void OnEnable() => SlotActive(false);
         public void DragFrom(int slotIndex) => OnDragItem?.Invoke(slotIndex, Index);
         public void Use() => OnItemUse?.Invoke(_currentItem);
         public void SetItem(Item item)
         {
             SlotActive(true);
-            
             _currentItem = item;
-        
             _imageItem.sprite = _currentItem.Icon;
             _imageItem.gameObject.SetActive(_currentItem.Icon != null);
             _amountText.text = _currentItem.Stack > 1 ? _currentItem.Stack.ToString() : "";
@@ -35,7 +44,6 @@ namespace Inventory
             _currentItem = null;
             _imageItem.sprite = null;
             _amountText.text = "";
-        
             SlotActive(false);
         }
 
@@ -43,6 +51,7 @@ namespace Inventory
         {
             _imageItem.gameObject.SetActive(value);
             _amountText.gameObject.SetActive(value);
+            _button.interactable = value;
         }
     }
 }

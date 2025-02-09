@@ -1,7 +1,10 @@
-﻿public enum ItemType
+﻿namespace Inventory.Items
 {
-    Ammo,
-    Consumable,
-    Head,
-    Torso
+    public enum ItemType
+    {
+        Ammo,
+        Consumable,
+        Head,
+        Body
+    }
 }

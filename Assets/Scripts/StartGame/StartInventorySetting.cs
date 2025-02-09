@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Inventory;
+using Inventory.Items;
+using Inventory.Main;
 using PopupManagement.Popups;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Inventory
+namespace StartGame
 {
     [Serializable]
     public class StartInventorySetting
@@ -15,34 +18,35 @@ namespace Inventory
         [Header("Required components")]
         [SerializeField] private GridLayoutGroup _inventoryGrid;
         [SerializeField] private SlotView _slotPrefab;
-
+        
         [Header("Start list items")]
-        [SerializeField] private List<Item> _list = new ();
+        [SerializeField] public List<ItemData> _additionalItems = new ();
         
-        [SerializeField] private InventoryData _inventoryData;
-        
-        private InventoryController _inventoryController;
-        private InventoryView _inventoryView;
+        public InventoryController InventoryController { get; private set; }
+        public InventoryData InventoryData { get; private set; }
+        public InventoryView InventoryView { get; private set; }
 
-        public void InitializeInventory(ItemPopup itemPopup)
+        public void InitializeInventory(ItemPopup popup)
         {
             _inventoryGrid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
             _inventoryGrid.constraintCount = _columnAmount;
             
-            _inventoryData = new InventoryData(InitializeArray());
-            _inventoryView = new InventoryView(_inventoryGrid.transform, _slotPrefab);
-            _inventoryController = new InventoryController(_inventoryView, _inventoryData, itemPopup, _totalAmount);
-            
-            _inventoryController.Initialize();
+            InventoryData = new InventoryData(InitializeArray());
+            InventoryView = new InventoryView(_inventoryGrid.transform, _slotPrefab);
+            InventoryController = new InventoryController(InventoryView, InventoryData, popup, _totalAmount);
+            InventoryController.Initialize();
         }
 
         private Item[] InitializeArray()
         {
-            var length = _list.Count;
-            var arr = _list.ToArray();
-            
+            var length = _additionalItems.Count;
+            var arr = new Item[length];
+
             for(int i = 0; i < length; i++)
+            {
+                arr[i] = _additionalItems[i].item;
                 arr[i].Index = i;
+            }
 
             return arr;
         }
