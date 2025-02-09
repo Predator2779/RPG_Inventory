@@ -22,13 +22,13 @@ namespace Inventory.Actions
         {
             if (item.Stack > 0)
             {
-                _health.Heal(50);
+                _health.TakeHeal(50);
                 item.Stack--;
-                Debug.Log($"Использована аптечка, осталось: {item.Stack}");
+                Debug.Log($"MedKit used. Left: {item.Stack}");
             }
             else
             {
-                Debug.LogWarning("Аптечки закончились!");
+                Debug.LogWarning("MedKits are out!");
             }
         }
     }
