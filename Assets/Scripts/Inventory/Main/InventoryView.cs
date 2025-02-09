@@ -1,5 +1,6 @@
 ﻿using System;
 using Inventory.Items;
+using Inventory.Slots;
 using UnityEngine;
 using Object = UnityEngine.Object;
 

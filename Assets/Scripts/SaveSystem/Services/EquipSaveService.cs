@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Equipment;
-using Inventory.Items;
 using SaveSystem.Main;
 using UnityEngine;
 
-namespace SaveSystem.SaveServices
+namespace SaveSystem.Services
 {
     public class EquipSaveService : ISaveService
     {

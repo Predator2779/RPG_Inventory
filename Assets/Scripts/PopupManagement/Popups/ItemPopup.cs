@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Health;
+using Inventory.Services;
 
 namespace PopupManagement.Popups
 {

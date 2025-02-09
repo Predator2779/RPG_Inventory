@@ -1,6 +1,6 @@
 using SaveSystem.Main;
 
-namespace SaveSystem.SaveServices
+namespace SaveSystem.Services
 {
     public interface ISaveService
     {

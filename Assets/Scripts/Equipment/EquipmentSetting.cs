@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Inventory;
+using Inventory.Services;
 using UnityEngine;
 
 namespace Equipment

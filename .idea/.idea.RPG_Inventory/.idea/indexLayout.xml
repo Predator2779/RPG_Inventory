@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ContentModelUserStore">
+  <component name="UserContentModel">
     <attachedFolders />
     <explicitIncludes>
-      <Path>Packages</Path>
-      <Path>ProjectSettings</Path>
       <Path>../../../Users/Р/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.2d.aseprite@1.1.6</Path>
       <Path>../../../Users/Р/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.2d.pixel-perfect@5.0.3</Path>
       <Path>../../../Users/Р/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.adaptiveperformance@5.1.0</Path>
@@ -14,6 +12,8 @@
       <Path>../../../Users/Р/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.nuget.mono-cecil@1.11.4</Path>
       <Path>../../../Users/Р/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.profiling.core@1.0.2</Path>
       <Path>../../../Users/Р/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.searcher@4.9.2</Path>
+      <Path>Packages</Path>
+      <Path>ProjectSettings</Path>
     </explicitIncludes>
     <explicitExcludes>
       <Path>.idea</Path>
@@ -23,10 +23,5 @@
       <Path>UserSettings</Path>
       <Path>obj</Path>
     </explicitExcludes>
-  </component>
-  <component name="UserContentModel">
-    <attachedFolders />
-    <explicitIncludes />
-    <explicitExcludes />
   </component>
 </project>

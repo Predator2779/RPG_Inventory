@@ -1,6 +1,7 @@
 ﻿using Equipment;
 using Inventory;
 using Inventory.Items;
+using Inventory.Services;
 using PopupManagement.Factory;
 using PopupManagement.Popups;
 using SaveSystem;

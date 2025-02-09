@@ -2,7 +2,7 @@
 using Inventory.Items;
 using Inventory.Main;
 
-namespace Inventory
+namespace Inventory.Services
 {
     public class InventoryService : IInventoryService
     {

@@ -1,6 +1,6 @@
 ﻿using Inventory.Items;
 
-namespace Inventory
+namespace Inventory.Services
 {
     public interface IInventoryService
     {

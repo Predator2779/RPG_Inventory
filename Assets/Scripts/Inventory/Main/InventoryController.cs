@@ -53,7 +53,7 @@ namespace Inventory.Main
                     slotItem.Value.Stack += amountToAdd;
                     item.Stack -= amountToAdd;
 
-                    Debug.Log($"Добавлено {amountToAdd} к {slotItem.Value.Name}, теперь в стэке {slotItem.Value.Stack}");
+                    Debug.Log($"Added {amountToAdd} к {slotItem.Value.Name}, now in stack: {slotItem.Value.Stack}");
 
                     if (item.Stack <= 0)
                     {
@@ -66,7 +66,7 @@ namespace Inventory.Main
             int emptySlotIndex = _itemsDict.Count < _totalSlots ? _itemsDict.Count : -1;
             if (emptySlotIndex == -1)
             {
-                Debug.LogWarning("Нет свободного места в инвентаре!");
+                Debug.LogWarning("There is no free space in the inventory!");
                 return;
             }
 
@@ -76,7 +76,7 @@ namespace Inventory.Main
             ChangeData();
             DrawItems();
             
-            Debug.Log($"Предмет {item.Name} добавлен в новый слот инвентаря!");
+            Debug.Log($"Item {item.Name} added to new slot");
         }
         
         public void RemoveItem(Item item)

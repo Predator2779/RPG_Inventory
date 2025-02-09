@@ -14,7 +14,11 @@ namespace Inventory.Main
         public InventoryData()
         {
             Items = Array.Empty<Item>();
-            OnDataChanged += items => { Items = items; };
+            OnDataChanged += items =>
+            {
+                Items = items;
+                Debug.Log("Inventory Data changed");
+            };
         }
     }
 }

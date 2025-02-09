@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using Inventory;
+using Inventory.Services;
 using SaveSystem.Main;
 using UnityEngine;
 
-namespace SaveSystem.SaveServices
+namespace SaveSystem.Services
 {
     public class InventorySaveService : ISaveService
     {

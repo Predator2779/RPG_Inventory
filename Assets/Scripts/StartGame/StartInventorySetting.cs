@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Inventory;
 using Inventory.Items;
 using Inventory.Main;
+using Inventory.Slots;
 using PopupManagement.Popups;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -22,7 +23,7 @@ namespace StartGame
 
         [Header("Start list items")] 
         [SerializeField] private bool _add;
-        [SerializeField] public List<ItemData> _additionalItemDatas = new ();
+        [SerializeField] private List<ItemData> _additionalItemDatas = new ();
         
         public InventoryController InventoryController { get; private set; }
         public InventoryData InventoryData { get; private set; }
@@ -42,9 +43,6 @@ namespace StartGame
         public void AddAdditionalItems()
         {
             if (!_add) return;
-            
-            var length = _additionalItemDatas.Count;
-            var arr = new Item[length];
 
             foreach (var data in _additionalItemDatas)
                 InventoryController.AddItem(data.item);

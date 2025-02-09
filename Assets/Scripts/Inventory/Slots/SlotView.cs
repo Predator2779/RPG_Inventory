@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Inventory
+namespace Inventory.Slots
 {
     [RequireComponent(typeof(Button))]
     public class SlotView : MonoBehaviour
@@ -20,16 +20,16 @@ namespace Inventory
         
         public int Index { get; set; }
 
-        private void OnValidate() => _button ??= GetComponent<Button>();
+        private void OnValidate() => InitializeButton();
 
         private void Awake()
         {
-            _button ??= GetComponent<Button>();
+            InitializeButton();
             SlotActive(false);
         }
         
         public void DragFrom(int slotIndex) => OnDragItem?.Invoke(slotIndex, Index);
-        public void Use() => OnItemUse?.Invoke(_currentItem);
+
         public void SetItem(Item item)
         {
             SlotActive(true);
@@ -53,5 +53,14 @@ namespace Inventory
             _amountText.gameObject.SetActive(value);
             _button.interactable = value;
         }
+
+        private void InitializeButton()
+        {
+            _button ??= GetComponent<Button>();
+            _button.onClick.RemoveAllListeners();
+            _button.onClick.AddListener(Use);
+        }
+
+        private void Use() => OnItemUse?.Invoke(_currentItem);
     }
 }

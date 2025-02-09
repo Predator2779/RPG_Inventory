@@ -1,4 +1,5 @@
 ﻿using Inventory.Items;
+using Inventory.Services;
 
 namespace Inventory.Actions
 {
