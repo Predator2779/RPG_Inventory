@@ -82,26 +82,24 @@ namespace Inventory.Main
             Debug.Log($"Item {item.Name} added to new slot");
         }
         
-        public void RemoveItem(Item item)
+        public void RemoveItem(int index)
         {
-            var slotIndex = _itemsDict.FirstOrDefault(x => x.Value == item).Key;
-
-            if (!_itemsDict.ContainsKey(slotIndex))
+            if (!_itemsDict.ContainsKey(index))
             {
-                Debug.LogWarning($"Item {item.Name} not found in inventory!");
+                Debug.LogWarning($"Item with index {index} not found in inventory!");
                 return;
             }
 
-            _itemsDict.Remove(slotIndex);
-            Debug.Log($"Removed {item.Name} from inventory.");
+            _itemsDict.Remove(index);
+            Debug.Log($"Remove item with index {index} from inventory.");
 
             ChangeData();
             DrawItems();
         }
 
-        public void FillStack(int slotIndex)
+        public void FillStack(int index)
         {
-            if (_itemsDict.TryGetValue(slotIndex, out var item))
+            if (_itemsDict.TryGetValue(index, out var item))
             {
                 item.Stack = item.MaxStack;
                 Debug.Log($"{item.Name} filled.");

@@ -16,7 +16,7 @@ namespace Inventory.Actions
 
         public void Execute(Item item)
         {
-            _inventoryService.RemoveItem(item);
+            _inventoryService.RemoveItem(item.Index);
         }
     }
 }

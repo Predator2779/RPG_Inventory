@@ -20,9 +20,9 @@ namespace Inventory.Services
             _inventoryController?.AddItem(item);
         }
 
-        public void RemoveItem(Item item)
+        public void RemoveItem(int index)
         {
-            _inventoryController?.RemoveItem(item);
+            _inventoryController?.RemoveItem(index);
         }
         public void BuyItem(int index)
         {

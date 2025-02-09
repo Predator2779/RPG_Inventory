@@ -28,7 +28,7 @@ namespace Equipment
 
             Item previousItem = slot.Unequip();
             slot.Equip(item);
-            _inventoryService.RemoveItem(item);
+            _inventoryService.RemoveItem(item.Index);
 
             if (previousItem != null)
             {

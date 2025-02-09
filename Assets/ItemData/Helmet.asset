@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25936589e35d4c1986eadb448f01db9d, type: 3}
-  m_Name: Item
+  m_Name: Helmet
   m_EditorClassIdentifier: 
   item:
+    Index: 0
     Type: 2
     Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    Name: Helmet
+    Name: "\u0428\u043B\u0435\u043C"
     MaxStack: 1
     Stack: 1
-    Defense: 2
-    Weight: 0.95
+    Defense: 10
+    Weight: 1

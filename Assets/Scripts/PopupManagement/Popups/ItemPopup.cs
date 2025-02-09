@@ -40,7 +40,7 @@ namespace PopupManagement.Popups
                 _itemIcon.sprite = item.Icon;
                 _itemName.text = item.Name;
                 _itemDefense.text = $"+{item.Defense}";
-                _itemWeight.text = $"{item.Weight:0.00} кг";
+                _itemWeight.text = $"{item.Weight * item.Stack:0.00} кг";
 
                 _currentAction = GetItemAction(item.Type);
                 _actionButton.GetComponentInChildren<TMP_Text>().text = _currentAction.ButtonText;

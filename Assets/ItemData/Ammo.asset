@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Ammo
   m_EditorClassIdentifier: 
   item:
-    Index: 4
+    Index: 3
     Type: 0
     Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    Name: Pistol_Ammo
+    Name: "\u041F\u0430\u0442\u0440\u043E\u043D\u044B 9x18\u043C\u043C"
     MaxStack: 30
-    Stack: 0
+    Stack: 30
     Defense: 0
-    Weight: 2
+    Weight: 0.01
